@@ -1,7 +1,15 @@
 import Hero from './Hero'
 import Footer from './Footer'
 
+import { useState } from 'react'
+
 const LandingPage = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
   return (
     <div className="app-shell">
       <div className="hero-bg">
@@ -13,13 +21,18 @@ const LandingPage = () => {
               <p className="logo-sub">Tactical Finance</p>
             </div>
           </div>
-          <ul className="nav-links">
-            <li><a href="#">About us</a></li>
-            <li><a href="#">How it works</a></li>
-            <li><a href="#">Smart solutions</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Contact us</a></li>
+          <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+            <li><a href="#" onClick={toggleMenu}>About us</a></li>
+            <li><a href="#" onClick={toggleMenu}>How it works</a></li>
+            <li><a href="#" onClick={toggleMenu}>Smart solutions</a></li>
+            <li><a href="#" onClick={toggleMenu}>Pricing</a></li>
+            <li><a href="#" onClick={toggleMenu}>Contact us</a></li>
           </ul>
+          <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <div className="actions">
             <button className="ghost-btn">Login</button>
             <button className="primary-btn">Get started</button>

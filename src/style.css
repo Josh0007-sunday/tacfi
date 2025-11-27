@@ -88,6 +88,37 @@ body {
   gap: 0.75rem;
 }
 
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: linear-gradient(135deg, #ff6ad5, #815cff);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
 .primary-btn {
   background: linear-gradient(135deg, #ff6ad5, #815cff);
   border: none;
@@ -133,10 +164,6 @@ body {
 }
 
 .hero-bg {
-  background-image: url('./img/tacfibg.png');
-  background-size: 100% auto;
-  background-position: center top;
-  background-repeat: no-repeat;
   padding: 2.5rem clamp(1.5rem, 4vw, 4.5rem) 4rem;
   position: relative;
 }
@@ -146,6 +173,11 @@ body {
   flex-direction: column;
   gap: clamp(2rem, 3vw, 3.5rem);
   align-items: center;
+  background-image: url('./img/tacfibg.png');
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 .hero-center {
@@ -1052,6 +1084,9 @@ body {
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0.8;
@@ -1180,34 +1215,128 @@ body {
   transform: translateY(-2px);
 }
 
+/* Tablet and Mobile Styles */
 @media (max-width: 900px) {
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+  .hero-bg {
+    padding: 1.5rem 1rem 2.5rem;
   }
 
-  .footer-links {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
+  .hero {
+    background-size: cover;
+    background-position: center;
   }
 
   .nav {
-    flex-direction: column;
-    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .logo-title {
+    font-size: 0.85rem;
+  }
+
+  .logo-sub {
+    font-size: 0.65rem;
+  }
+
+  .hamburger {
+    display: flex;
   }
 
   .nav-links {
-    flex-wrap: wrap;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(2, 1, 7, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.2rem;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .actions {
+    gap: 0.5rem;
+    display: none;
+  }
+
+  .primary-btn,
+  .ghost-btn {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.85rem;
+  }
+
+  .hero-center {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .hero-center h1 {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    line-height: 1.15;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.9rem;
+  }
+
+  .lead {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .cta-form {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cta-form input,
+  .cta-form button {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 100%;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
   }
 
   .dashboard {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    padding: 0 1.5rem;
+    grid-template-rows: repeat(2, minmax(180px, auto));
+    padding: 0 1rem;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .card {
+    padding: 1.1rem 1.2rem;
+    border-radius: 18px;
   }
 
   .portfolio-card {
@@ -1215,9 +1344,22 @@ body {
     grid-row: 1;
   }
 
+  .portfolio-card h3 {
+    font-size: 1.65rem;
+  }
+
   .secured-card {
     grid-column: 2;
     grid-row: 1;
+  }
+
+  .secured-card h4 {
+    font-size: 1.05rem;
+  }
+
+  .icon-circle {
+    width: 48px;
+    height: 48px;
   }
 
   .asset-card {
@@ -1225,14 +1367,8 @@ body {
     grid-row: 2;
   }
 
-  .allocation-card {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .transfer-card {
-    grid-column: 2;
-    grid-row: 3;
+  .asset-card h4 {
+    font-size: 1.2rem;
   }
 
   .market-card {
@@ -1240,23 +1376,234 @@ body {
     grid-row: 2;
   }
 
-  .user-icon-card {
-    grid-column: 1 / span 2;
-    grid-row: 4;
+  .transfer-card {
+    display: none;
   }
 
-  .stats {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  .allocation-card {
+    display: none;
+  }
+
+  .user-icon-card {
+    display: none;
+  }
+
+  .card-label {
+    font-size: 0.7rem;
+  }
+
+  .muted {
+    font-size: 0.8rem;
+  }
+
+  .forecast-bars {
+    gap: 0.4rem;
+  }
+
+  .forecast-bars div {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .crypto-logos-section {
+    padding: 4rem 0;
+    margin-top: 4rem;
   }
 
   .crypto-logos {
+    grid-template-columns: repeat(11, 1fr);
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+
+  .crypto-logos-left img:nth-child(1),
+  .crypto-logos-right img:nth-child(5) {
+    width: 30px;
+    height: 30px;
+  }
+
+  .crypto-logos-left img:nth-child(2),
+  .crypto-logos-right img:nth-child(4) {
+    width: 35px;
+    height: 35px;
+  }
+
+  .crypto-logos-left img:nth-child(3),
+  .crypto-logos-right img:nth-child(3) {
+    width: 40px;
+    height: 40px;
+  }
+
+  .crypto-logos-left img:nth-child(4),
+  .crypto-logos-right img:nth-child(2) {
+    width: 45px;
+    height: 45px;
+  }
+
+  .crypto-logos-left img:nth-child(5),
+  .crypto-logos-right img:nth-child(1) {
+    width: 50px;
+    height: 50px;
+  }
+
+  .rocket-container {
+    transform: scale(0.8);
+  }
+
+  .loading-circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .rocket-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .crypto-cta {
+    margin-top: 12rem;
+    padding: 3rem 1rem 6rem;
+  }
+
+  .crypto-count {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .crypto-buttons {
     flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .crypto-btn {
+    width: 100%;
+  }
+
+  .pricing {
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-top: 2rem;
+  }
+
+  .plan-card {
+    min-height: auto;
+  }
+
+  .footer {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile Only Styles */
+@media (max-width: 400px) {
+  .nav {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+
+  .logo-title {
+    font-size: 0.75rem;
+  }
+
+  .logo-sub {
+    font-size: 0.6rem;
+  }
+
+  .nav-links {
+    font-size: 1rem;
+    gap: 1.5rem;
+  }
+
+  .actions {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-center h1 {
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem;
+  }
+
+  .lead {
+    font-size: 0.95rem;
+  }
+
+  .primary-btn,
+  .ghost-btn {
+    padding: 0.75rem 1.3rem;
+    font-size: 0.9rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 250px;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    min-height: auto;
+  }
+
+  .portfolio-card,
+  .secured-card,
+  .asset-card,
+  .allocation-card,
+  .transfer-card,
+  .market-card,
+  .user-icon-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .crypto-logos {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 2rem;
+    padding: 0 1rem;
   }
 
   .crypto-logos-left,
   .crypto-logos-right {
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
@@ -1264,11 +1611,27 @@ body {
 
   .crypto-logos-left img,
   .crypto-logos-right img {
-    width: 35px;
-    height: 35px;
+    width: 40px !important;
+    height: 40px !important;
   }
 
-  .rocket-icon {
-    font-size: 2.5rem;
+  .crypto-logos-center {
+    order: -1;
+  }
+
+  .crypto-cta {
+    margin-top: 3rem;
+  }
+
+  .crypto-count {
+    font-size: clamp(1.25rem, 8vw, 1.75rem);
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-column {
+    text-align: center;
   }
 }
