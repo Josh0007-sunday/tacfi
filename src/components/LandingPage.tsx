@@ -27,6 +27,10 @@ const LandingPage = () => {
             <li><a href="#" onClick={toggleMenu}>Smart solutions</a></li>
             <li><a href="#" onClick={toggleMenu}>Pricing</a></li>
             <li><a href="#" onClick={toggleMenu}>Contact us</a></li>
+            <li className="mobile-menu-actions">
+              <button className="ghost-btn" onClick={toggleMenu}>Login</button>
+              <button className="primary-btn" onClick={toggleMenu}>Get started</button>
+            </li>
           </ul>
           <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label="Toggle menu">
             <span></span>

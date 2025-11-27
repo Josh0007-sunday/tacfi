@@ -119,6 +119,25 @@ body {
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
+.mobile-menu-actions {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-menu-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .mobile-menu-actions button {
+    width: 100%;
+  }
+}
+
 .primary-btn {
   background: linear-gradient(135deg, #ff6ad5, #815cff);
   border: none;
@@ -356,9 +375,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  text-align: center;
+  text-align: left;
 }
 
 .secured-card h4 {
@@ -1222,8 +1241,8 @@ body {
   }
 
   .hero {
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: center top;
   }
 
   .nav {
@@ -1514,7 +1533,7 @@ body {
 }
 
 /* Mobile Only Styles */
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .nav {
     justify-content: space-between;
     align-items: center;
@@ -1545,6 +1564,11 @@ body {
 
   .hamburger {
     display: flex;
+  }
+
+  .hero {
+    background-size: 150% auto;
+    background-position: center top;
   }
 
   .hero-center h1 {
@@ -1594,10 +1618,17 @@ body {
     grid-row: auto;
   }
 
+  .crypto-logos-section {
+    padding: 3rem 0;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+
   .crypto-logos {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
     padding: 0 1rem;
   }
 
@@ -1605,18 +1636,29 @@ body {
   .crypto-logos-right {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 400px;
   }
 
   .crypto-logos-left img,
   .crypto-logos-right img {
-    width: 40px !important;
-    height: 40px !important;
+    width: 45px !important;
+    height: 45px !important;
+    margin: 0 !important;
   }
 
   .crypto-logos-center {
-    order: -1;
+    order: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .rocket-container {
+    transform: scale(1);
   }
 
   .crypto-cta {
