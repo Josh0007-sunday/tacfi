@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './config/database.js';
 import authRoutes from './routes/authRoutes.js';
 import depositRoutes from './routes/depositRoutes.js';
@@ -15,10 +16,9 @@ cron.start();
 
 const app = express();
 
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true
-}));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,6 +38,14 @@ app.get('/api/health', (req, res) => {
     message: 'TACFI Server is running',
     timestamp: new Date().toISOString()
   });
+});
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, '..', 'dist')));
+
+// For any other route, serve the frontend's index.html
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
 });
 
 app.use((req, res) => {

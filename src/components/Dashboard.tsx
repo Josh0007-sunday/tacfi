@@ -5,7 +5,7 @@ import DashboardHeader from './DashboardHeader';
 import CryptoPriceTicker from './CryptoPriceTicker';
 import InfoFAQ from './InfoFAQ';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 const Dashboard = () => {
   const navigate = useNavigate();

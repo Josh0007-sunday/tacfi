@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DashboardHeader from './DashboardHeader';
 import { QRCodeSVG } from 'qrcode.react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 
 const treasuryWallet = "6tiGkVDyQB6884Lhm3fUnytGRe6CP1zrdkfxn7YXsWCf";
