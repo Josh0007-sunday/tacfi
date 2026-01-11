@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import TradingViewWidget from './TradingViewWidget';
 import DashboardHeader from './DashboardHeader';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const TradePage = () => {
   const { tokenId } = useParams<{ tokenId: string }>();
